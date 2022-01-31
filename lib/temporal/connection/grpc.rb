@@ -470,7 +470,10 @@ module Temporal
         @client ||= Temporal::Api::WorkflowService::V1::WorkflowService::Stub.new(
           url,
           :this_channel_is_insecure,
-          timeout: 60
+          timeout: 60,
+          channel_args: {
+            'grpc.ssl_target_name_override': url
+          }
         )
       end
 
